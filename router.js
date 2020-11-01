@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 
-//Espacio para los modulos del sistema
-
+//System modules in use  
+//Scraping module
+app.use(require("./src/Controllers/scrapingCtrl"));
 
 module.exports = app;
