@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node ./src/index.ts",
-    "ndm": "nodemon ./src/index.ts",
-    "dev": "node-dev --respawn ./src/index.ts"
+    "start": "node ./src/index.js",
+    "ndm": "nodemon ./src/index.js",
+    "dev": "node --respawn ./src/index.js"
   },
   "author": "",
   "license": "ISC",
