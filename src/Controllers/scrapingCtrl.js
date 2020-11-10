@@ -23,6 +23,15 @@ app.get('/api/neweggProducts', async function(req, res) {
         sendResponse(null, "Ha ocurrido un error al consultar los productos: " + result[1], HttpStatus.INTERNAL_SERVER_ERROR, res);
 });
 
+app.get('/api/retailProducts', async function(req, res) {
+    const resultNewegg = await DoNeweggWebScrapping();
+    const resultAmazon = await DoAmazonWebScrapping();
+    if(resultNewegg[0] || resultAmazon[0])
+        sendResponse(JSON.stringify({amazon:resultAmazon[1], newegg:resultNewegg[1]}), "Resultado Obtenido", HttpStatus.OK, res);
+    else 
+        sendResponse(null, "Ha ocurrido un error al consultar los productos: " + result[1], HttpStatus.INTERNAL_SERVER_ERROR, res);
+});
+
 app.get('/api/benchmarksCPU', async function(req, res) {
     const result = await DoCPUBenchmarkScrapping();
     if(result[0])
@@ -35,6 +44,15 @@ app.get('/api/benchmarksGPU', async function(req, res) {
     const result = await DoGPUBenchmarkScrapping();
     if(result[0])
         sendResponse(result[1], "Resultado Obtenido", HttpStatus.OK, res);
+    else 
+        sendResponse(null, "Ha ocurrido un error al consultar los benchmarks: " + result[1], HttpStatus.INTERNAL_SERVER_ERROR, res);
+});
+
+app.get('/api/benchmarks', async function(req, res) {
+    const resultCPU = await DoCPUBenchmarkScrapping();
+    const resultGPU = await DoGPUBenchmarkScrapping();
+    if(resultCPU[0] || resultGPU[0])
+        sendResponse(JSON.stringify({CPU: resultCPU[1], GPU: resultGPU[1]}), "Resultado Obtenido", HttpStatus.OK, res);
     else 
         sendResponse(null, "Ha ocurrido un error al consultar los benchmarks: " + result[1], HttpStatus.INTERNAL_SERVER_ERROR, res);
 });
