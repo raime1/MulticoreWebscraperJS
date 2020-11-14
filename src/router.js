@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 
 //System modules in use  
-//Scraping module
-app.use(require("./Controllers/scrapingCtrl"));
+//Single-Threaded Scraping module
+app.use(require("./Controllers/ST_scrapingCtrl"));
+//Multi-Threaded Scraping module
+app.use(require("./Controllers/MT_scrapingCtrl"));
 
 module.exports = app;

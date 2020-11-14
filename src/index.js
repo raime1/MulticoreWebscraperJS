@@ -3,6 +3,8 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const numCPUs = require('os').cpus().length;
+const cluster = require('cluster');
 
 function config() {
     app.use(bodyParser.urlencoded({ extended: true}));
@@ -29,6 +31,6 @@ app.use(require('./router'));
 app.use(express.static('client'));
 
 
-app.listen(process.env.PORT || 3000, () => {  
+app.listen(process.env.PORT || 3000, () => {
     console.log(`Example app listening on port ${process.env.PORT || 3000}!`); 
 });
