@@ -4,7 +4,7 @@ const fs = require('fs');
 //const screenshotName = 'amazon_screenshot.png'
 
 async function doWebScraping() {
-    const browser = await puppeteer.launch()
+    const browser = await ()
     const page = await browser.newPage()
     await page.setDefaultNavigationTimeout(0);
     await page.setViewport({ width: 1920, height: 1080 })

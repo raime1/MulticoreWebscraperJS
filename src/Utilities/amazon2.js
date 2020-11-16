@@ -8,7 +8,7 @@ const Article = require('../Models/Article');
 // async function DoAmazonWebScrapping () {
 exports.DoAmazonWebScrappingST = async function() {
     try {
-        const browser = await puppeteer.launch()
+        const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
         const page = await browser.newPage()
         await page.setDefaultNavigationTimeout(0);
         await page.setViewport({ width: 1920, height: 1080 })
@@ -86,7 +86,7 @@ exports.DoAmazonWebScrappingST = async function() {
 
 exports.DoAmazonWebScrapping = async function() {
     try {
-        const browser = await puppeteer.launch()
+        const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
         const page = await browser.newPage()
         await page.setDefaultNavigationTimeout(0);
         await page.setViewport({ width: 1920, height: 1080 })

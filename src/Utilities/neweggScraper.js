@@ -5,7 +5,7 @@ const Article = require('../Models/Article');
 exports.DoNeweggWebScrappingST = async function() {
 
     try{
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(0);
         await page.setViewport({ width: 1920, height: 1080 })
@@ -68,7 +68,7 @@ exports.DoNeweggWebScrappingST = async function() {
 exports.DoNeweggWebScrapping = async function() {
 
     try{
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(0);
         await page.setViewport({ width: 1920, height: 1080 })

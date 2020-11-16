@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 
 exports.DoGPUBenchmarkScrappingST = async function() {
     try{
-        const browser = await puppeteer.launch()
+        const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
         const page = await browser.newPage()
         await page.setDefaultNavigationTimeout(0);
         await page.setViewport({ width: 1920, height: 1080 })
@@ -51,7 +51,7 @@ exports.DoGPUBenchmarkScrappingST = async function() {
 
 exports.DoGPUBenchmarkScrapping = async function() {
     try{
-        const browser = await puppeteer.launch()
+        const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
         const page = await browser.newPage()
         await page.setDefaultNavigationTimeout(0);
         await page.setViewport({ width: 1920, height: 1080 })
