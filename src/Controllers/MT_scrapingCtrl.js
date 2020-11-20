@@ -99,7 +99,7 @@ app.get('/api/benchmarks', async function(req, res) {
         if(results[0][0][0] || results[1][0][0])
             sendResponse({CPU: results[0][0][1], GPU: results[1][0][1]}, "Resultado Obtenido", {total: sw.stop(), CPU: results[0][1], GPU: results[1][1]}, HttpStatus.OK, res);
         else 
-            sendResponse(null, "Ha ocurrido un error al consultar los benchmarks: " + results[0][1], {total: sw.stop(), CPU: 0, GPU: 0}, HttpStatus.INTERNAL_SERVER_ERROR, res);
+            sendResponse(null, "Ha ocurrido un error al consultar los benchmarks: " + results[0][0][1], {total: sw.stop(), CPU: 0, GPU: 0}, HttpStatus.INTERNAL_SERVER_ERROR, res);
     })
     .catch(async (error) => {
         sendResponse(null, "Ha ocurrido un error al consultar los benchmarks: " + error, {total: sw.stop(), CPU: 0, GPU: 0}, HttpStatus.INTERNAL_SERVER_ERROR, res);
