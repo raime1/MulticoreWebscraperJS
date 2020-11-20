@@ -41,7 +41,7 @@ app.get('/api/retailProducts', async function(req, res) {
         if(results[0][0][0] || results[1][0][0])
             sendResponse({newegg: results[0][0][1], amazon: results[1][0][1]}, "Resultado Obtenido", {total: sw.stop(), newegg: results[0][1], amazon: results[1][1]}, HttpStatus.OK, res);
         else 
-            sendResponse(null, "Ha ocurrido un error al consultar los productos: " + results[0][1], {total: sw.stop(), newegg: 0, amazon: 0}, HttpStatus.INTERNAL_SERVER_ERROR, res);
+            sendResponse(null, "Ha ocurrido un error al consultar los productos: " + results[0][0][1], {total: sw.stop(), newegg: 0, amazon: 0}, HttpStatus.INTERNAL_SERVER_ERROR, res);
     })
     .catch(async (error) => {
         sendResponse(null, "Ha ocurrido un error al consultar los productos: " + error, {total: sw.stop(), newegg: 0, amazon: 0}, HttpStatus.INTERNAL_SERVER_ERROR, res);
