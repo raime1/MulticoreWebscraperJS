@@ -31,3 +31,4 @@ bower_components
 .lock-wscript
 
 node_modules/
+functions/
