@@ -7,7 +7,6 @@ const { DoNeweggWebScrapping } = require('../Utilities/neweggScraper');
 const { DoAmazonWebScrapping } = require('../Utilities/amazon2');
 const { DoCPUBenchmarkScrapping } = require('../Utilities/benchmarksCPU');
 const { DoGPUBenchmarkScrapping } = require('../Utilities/benchmarksGPU');
-const { doWorkload } = require('../Utilities/cluster');
 
 app.get('/api/amazonProducts', async function(req, res) {
     const sw = new Stopwatch(true);
