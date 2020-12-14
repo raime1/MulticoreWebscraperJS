@@ -1,8 +1,8 @@
 // class constructor
-function Response(message, data, times) {
+function Response(message, data, success) {
     this.message = message;
     this.data = data;
-    this.times = times;
+    this.success = success;
 }
 
 // export the class

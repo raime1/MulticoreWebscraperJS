@@ -30,7 +30,7 @@ app.use(require('./router'));
 
 app.use(express.static('client'));
 
-/*if (cluster.isMaster) {
+if (cluster.isMaster) {
     console.log(`Master ${process.pid} is running`);
   
     // Fork workers.
@@ -46,10 +46,10 @@ app.use(express.static('client'));
     }
 
   } else {
-   */ app.listen(process.env.PORT || 3000, () => {
+    app.listen(process.env.PORT || 3000, () => {
         console.log(`Example app listening on port ${process.env.PORT || 3000}!`); 
-  });/*
-  }*/
+  });
+  }
 
 
 
