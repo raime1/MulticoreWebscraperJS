@@ -7,4 +7,6 @@ RUN npm install
 
 COPY . /work
 
-ENTRYPOINT ["npm", "start"]
+EXPOSE 3000
+
+CMD ["npm", "start"]
