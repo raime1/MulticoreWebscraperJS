@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: gcr.io/prototipo-compuysociedad/backend-operativos:v1
+        image: gcr.io/prototipo-compuysociedad/app:v1
         ports:
         - containerPort: 4000
         env:
