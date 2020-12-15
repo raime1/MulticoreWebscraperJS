@@ -11,26 +11,26 @@ const app = express();
 const HttpStatus = require('http-status-codes');
 
 app.get('/getArticulosGPUs', async function (req, res) {
-    return getRepository(ArticulosGPUs).find({
-        relations: ["historial"]
+    getRepository(ArticulosGPUs).find({
+        relations: ["historial" , "gpu", "tienda"]
     })
     .then((articulos: ArticulosGPUs[]) => {
-        return sendResponse(articulos, "Articulos de GPUs obtenidos con exito", true, HttpStatus.OK, res)
+        sendResponse(articulos, "Articulos de GPUs obtenidos con exito", true, HttpStatus.OK, res)
     })
     .catch(err => {
-        return sendResponse(err, "Ha ocurrido un error al obtener los articulos", HttpStatus.INTERNAL_SERVER_ERROR, res)
+        sendResponse(err, "Ha ocurrido un error al obtener los articulos", false, HttpStatus.INTERNAL_SERVER_ERROR, res)
     });
 });
 
 app.get('/getArticuloGPU', async function (req, res) {
-    return getRepository(ArticulosGPUs).findOne(req.body.id, {
-        relations: ["historial"]
+    getRepository(ArticulosGPUs).findOne(req.body.id, {
+        relations: ["historial" , "gpu", "tienda"]
     })
     .then((articulos: ArticulosGPUs) => {
-        return sendResponse(articulos, "Articulo de GPU obtenido con exito", true, HttpStatus.OK, res)
+        sendResponse(articulos, "Articulo de GPU obtenido con exito", true, HttpStatus.OK, res)
     })
     .catch(err => {
-        return sendResponse(err, "Ha ocurrido un error al obtener los articulos", HttpStatus.INTERNAL_SERVER_ERROR, res)
+        sendResponse(err, "Ha ocurrido un error al obtener los articulos", false, HttpStatus.INTERNAL_SERVER_ERROR, res)
     });
 });
 
@@ -56,15 +56,16 @@ app.post('/addArticuloGPU', async function (req, res) {
             articulos.push(articulo);
         }
     } else {
-        return sendResponse(resultScraper[1], "Error al agregar los articulos", false, HttpStatus.INTERNAL_SERVER_ERROR, res);
+        sendResponse(resultScraper[1], "Error al agregar los articulos", false, HttpStatus.INTERNAL_SERVER_ERROR, res);
+        return;
     }
         
-    return getRepository(ArticulosGPUs).save(articulos)
+    getRepository(ArticulosGPUs).save(articulos)
     .then((a: ArticulosGPUs[]) => {
-        return sendResponse(a, "Articulo de CPU agregado con exito", true, HttpStatus.OK, res);
+        sendResponse(a, "Articulo de CPU agregado con exito", true, HttpStatus.OK, res);
     })
     .catch(err => {
-        return sendResponse(err, "Error al agregar el articulo", false, HttpStatus.INTERNAL_SERVER_ERROR, res);
+        sendResponse(err, "Error al agregar el articulo", false, HttpStatus.INTERNAL_SERVER_ERROR, res);
     });
 });
 module.exports = app;

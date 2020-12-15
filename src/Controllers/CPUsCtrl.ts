@@ -7,37 +7,37 @@ const app = express();
 const HttpStatus = require('http-status-codes');
 
 app.get('/getCPUs', async function (req, res) {
-    return getRepository(CPUs).find({
-        relations: ["articulos"]
+    getRepository(CPUs).find({
+        relations: ["articulos_cpus", "articulos_cpus.historial", "articulos_cpus.tienda"]
     })
     .then((cpus: CPUs[]) => {
-        return sendResponse(cpus, "CPUs obtenidas con exito", true, HttpStatus.OK, res)
+        sendResponse(cpus, "CPUs obtenidas con exito", true, HttpStatus.OK, res)
     })
     .catch(err => {
-        return sendResponse(err, "Ha ocurrido un error al obtener las CPUs", HttpStatus.INTERNAL_SERVER_ERROR, res)
+        sendResponse(err, "Ha ocurrido un error al obtener las CPUs", false, HttpStatus.INTERNAL_SERVER_ERROR, res)
     });
 });
 
 app.get('/getCPU', async function (req, res) {
-    return getRepository(CPUs).findOne(req.body.id, {
-        relations: ["articulos"]
+    getRepository(CPUs).findOne(req.body.id, {
+        relations: ["articulos_cpus", "articulos_cpus.historial", "articulos_cpus.tienda"]
     })
     .then((cpus: CPUs) => {
-        return sendResponse(cpus, "CPU obtenida con exito", true, HttpStatus.OK, res)
+        sendResponse(cpus, "CPU obtenida con exito", true, HttpStatus.OK, res)
     })
     .catch(err => {
-        return sendResponse(err, "Ha ocurrido un error al obtener las CPUs", HttpStatus.INTERNAL_SERVER_ERROR, res)
+        sendResponse(err, "Ha ocurrido un error al obtener las CPUs", false, HttpStatus.INTERNAL_SERVER_ERROR, res)
     });
 });
 
 app.post('/addCPU', async function (req, res) {
     let cpu = null; 
-    return getRepository(CPUs).save(cpu)
+    getRepository(CPUs).save(cpu)
     .then((g: CPUs) => {
-        return sendResponse(g, "CPU agregada con exito", true, HttpStatus.OK, res);
+        sendResponse(g, "CPU agregada con exito", true, HttpStatus.OK, res);
     })
     .catch(err => {
-        return sendResponse(err, "Error al agregar la CPU", false, HttpStatus.INTERNAL_SERVER_ERROR, res);
+        sendResponse(err, "Error al agregar la CPU", false, HttpStatus.INTERNAL_SERVER_ERROR, res);
     });
 });
 

@@ -53,7 +53,7 @@ exports.GetNeweggProducts = async function(url) {
     } 
 };
 
-exports.GetProductPrice = async function GetProductPrice(prodURL) {
+exports.GetProductPriceNewegg = async function GetProductPriceNewegg(prodURL) {
     try {
         const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
         const page = await browser.newPage()

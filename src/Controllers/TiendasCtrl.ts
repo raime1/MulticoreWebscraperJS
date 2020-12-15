@@ -33,12 +33,12 @@ app.get('/getTienda', async function (req, res) {
 
 app.post('/addTienda', async function (req, res) {
     let tienda = new Tiendas(req.body.nombre);
-    return getRepository(Tiendas).save(tienda)
+    getRepository(Tiendas).save(tienda)
     .then((t: Tiendas) => {
-        return sendResponse(t, "Tienda agregada con exito", true, HttpStatus.OK, res);
+        sendResponse(t, "Tienda agregada con exito", true, HttpStatus.OK, res);
     })
     .catch(err => {
-        return sendResponse(err, "Error al agregar la tienda", false, HttpStatus.INTERNAL_SERVER_ERROR, res);
+        sendResponse(err, "Error al agregar la tienda", false, HttpStatus.INTERNAL_SERVER_ERROR, res);
     });
 
 });

@@ -56,7 +56,7 @@ exports.GetAmazonProducts = async function GetAmazonProducts(prodURL) {
     }
 }
 
-exports.GetProductPrice = async function GetProductPrice(prodURL) {
+exports.GetProductPriceAmazon = async function GetProductPriceAmazon(prodURL) {
     try {
         const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
         const page = await browser.newPage()
