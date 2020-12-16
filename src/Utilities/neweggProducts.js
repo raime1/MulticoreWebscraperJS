@@ -18,7 +18,7 @@ exports.GetNeweggProducts = async function(url) {
         let articles = [];
         var counter = 0;
         for (const div of divs) {
-            if(counter === 5)
+            if(counter === 2)
                 break;
 
             try {

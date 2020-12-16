@@ -24,7 +24,7 @@ exports.GetAmazonProducts = async function GetAmazonProducts(prodURL) {
     
         var counter = 0;
         for (const div of divs) {
-            if(counter == 5)
+            if(counter == 2)
                 break;
             try {
                 const title = await div.$eval(("h2"), (element) => element.innerText);

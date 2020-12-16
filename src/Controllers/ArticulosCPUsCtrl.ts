@@ -37,9 +37,9 @@ app.get('/getArticuloCPU', async function (req, res) {
 app.post('/addArticuloCPU', async function (req, res) {
     let resultScraper = null;
     if(req.body.id_tienda === 1)
-        resultScraper = GetAmazonProducts(req.body.url);
+        resultScraper = await GetAmazonProducts(req.body.url);
     if(req.body.id_tienda === 2)
-        resultScraper = GetNeweggProducts(req.body.url);
+        resultScraper = await GetNeweggProducts(req.body.url);
     
     let articulos = [];
     if(resultScraper[0]){
