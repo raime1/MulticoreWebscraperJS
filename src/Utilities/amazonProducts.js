@@ -71,7 +71,7 @@ exports.GetProductPriceAmazon = async function GetProductPriceAmazon(prodURL) {
         var price;
         try {
             price = await page.$eval(("span[class='a-size-medium a-color-price priceBlockBuyingPriceString'"), (element) => element.innerText);
-            price = parseFloat(price.replace( /^\D+/g, ''));
+            price = parseFloat(price.replace( /[^0-9\.]+/g, ''));
             
         } catch (error) {
             price = null;

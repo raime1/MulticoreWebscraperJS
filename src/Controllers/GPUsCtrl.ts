@@ -11,6 +11,11 @@ app.get('/getGPUs', async function (req, res) {
         relations: ["articulos_gpus", "articulos_gpus.historial", "articulos_gpus.tienda"]
     })
     .then((gpus: GPUs[]) => {
+        for(let g of gpus){
+            for(let a of g.articulos_gpus){
+                a.historial = a.historial.reverse();
+            }
+        }
         sendResponse(gpus, "GPUs obtenidas con exito", true, HttpStatus.OK, res)
     })
     .catch(err => {
@@ -23,6 +28,9 @@ app.get('/getGPU', async function (req, res) {
         relations: ["articulos_gpus", "articulos_gpus.historial", "articulos_gpus.tienda"]
     })
     .then((gpus: GPUs) => {
+        for(let a of gpus.articulos_gpus){
+            a.historial = a.historial.reverse();
+        }
         sendResponse(gpus, "GPU obtenida con exito", true, HttpStatus.OK, res)
     })
     .catch(err => {

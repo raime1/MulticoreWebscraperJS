@@ -6,21 +6,25 @@ import { GetProductPriceNewegg} from '../Utilities/neweggProducts';
 import { GetProductPriceAmazon} from '../Utilities/amazonProducts';
 
 
-const updatePrices = async function updtePrices() {
+export const updatePricesGPUs = async function updtePrices() {
   getRepository(ArticulosGPUs).find({relations:["tienda"]})
   .then(async (aGPUs: ArticulosGPUs[]) => {
       let historiales = [];
+      let d = 1;
       for(let a of aGPUs){
+        console.log(`Analizando: ${d} de ${aGPUs.length}`);
+        d++;
         let res;  
         if(a.tienda.nombre === "Amazon")
             res = await GetProductPriceAmazon(a.url_gpu);
         if(a.tienda.nombre === "Newegg")
             res = await GetProductPriceNewegg(a.url_gpu);
-        let historial = new HistorialGPUs(a, res.precio, res.in_stock);
-        historiales.push(historial);
+        if(res[0]){
+            let historial = new HistorialGPUs(a, res[1].price, res[1].in_stock);
+            historiales.push(historial);
+        }
 
       }
-
       getRepository(HistorialGPUs).save(historiales)
       .then(() => {
           console.log("Scraping de precios terminado");
@@ -33,5 +37,3 @@ const updatePrices = async function updtePrices() {
       console.log(err);
   });  
 };
-
-updatePrices();

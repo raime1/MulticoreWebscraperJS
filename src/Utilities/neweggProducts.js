@@ -68,7 +68,7 @@ exports.GetProductPriceNewegg = async function GetProductPriceNewegg(prodURL) {
         var price;
         try {
             price = await page.$eval(("li[class='price-current']"), (element) => element.innerText);
-            price = parseFloat(price.replace( /^\D+/g, ''));
+            price = parseFloat(price.replace( /[^0-9\.]+/g, ''));
         } catch (error) {
             price = null;
         }
