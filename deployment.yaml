@@ -17,10 +17,10 @@ spec:
       - name: my-app
         image: gcr.io/prototipo-compuysociedad/app:v1
         ports:
-        - containerPort: 4000
+        - containerPort: 3000
         env:
         - name: PORT
-          value: "4000"
+          value: "3000"
         - name: LOG_LEVEL
           value: "info"
         - name: NODE_ENV
@@ -33,8 +33,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 80
-    targetPort: 4000
+  - port: 3000
+    targetPort: 3000
     protocol: TCP
   selector:
     app: my-app
